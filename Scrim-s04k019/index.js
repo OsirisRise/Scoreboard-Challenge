@@ -1,74 +1,48 @@
-body {
-    margin: 0;
-    background: #1B244A;
-    font-family: 'Cursed Timer ULiL';
-    text-align: center;
+// Variables to track both team scores
+let homeScore = 0;
+let awayScore = 0;
+
+// Get the score display elements
+let homeScoreEl = document.getElementById("home-score");
+let awayScoreEl = document.getElementById("away-score");
+
+// Function to increase score for either team
+function increaseScore(team, points) {
+    if (team === 'home') {
+        homeScore += points;
+        homeScoreEl.textContent = homeScore;
+    } else if (team === 'guest') {
+        awayScoreScore += points;
+        awayScoreEl.textContent = awayScore;
+    }
+    
+    // Check which team is leading after every score change
+    updateLeader();
 }
 
-.container {
-    display: flex;
-    justify-content: space-around;
-    padding: 50px 20px;
+// Function to highlight the leading team
+function updateLeader() {
+    // Remove the 'leading' class from both scores first
+    homeScoreEl.classList.remove('leading');
+    awayScoreEl.classList.remove('leading');
+    
+    // Add 'leading' class to whoever has more points
+    if (homeScore > guestScore) {
+        homeScoreEl.classList.add('leading');
+    } else if (awayScore > homeScore) {
+        awayScoreEl.classList.add('leading');
+    }
+    // If they're tied, neither gets the highlight
 }
 
-.column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-h3 {
-    color: white;
-    font-size: 40px;
-    margin: 0 0 20px 0;
-}
-
-.score {
-    background: #0a0001;
-    font-size: 90px;
-    color: #F94F6D;
-    width: 155px;
-    height: 120px;
-    margin: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    border: 2px solid transparent;
-    transition: border 0.3s ease;
-}
-
-.score.leading {
-    border: 2px solid #FFC700;
-    box-shadow: 0 0 15px rgba(255, 199, 0, 0.5);
-}
-
-button {
-    background: none;
-    border: 2px solid #9AABD8;
-    border-radius: 5px;
-    color: #9AABD8;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 10px 15px;
-    margin: 5px;
-    cursor: pointer;
-    width: 45px;
-    transition: all 0.2s ease;
-}
-
-button:hover {
-    background: #9AABD8;
-    color: #1B244A;
-}
-
-button:active {
-    transform: scale(0.95);
-}
-
-#new-game-btn {
-    margin-top: 30px;
-    width: 150px;
-    font-size: 20px;
-    padding: 12px 20px;
+// Function to reset the game
+function resetGame() {
+    homeScore = 0;
+    awayScore = 0;
+    homeScoreEl.textContent = 0;
+    awayScoreEl.textContent = 0;
+    
+    // Remove highlights when game resets
+    homeScoreEl.classList.remove('leading');
+    awayScoreEl.classList.remove('leading');
 }
