@@ -11,7 +11,7 @@ function increaseScore(team, points) {
     if (team === 'home') {
         homeScore += points;
         homeScoreEl.textContent = homeScore;
-    } else if (team === 'guest') {
+    } else if (team === 'away') {
         awayScoreScore += points;
         awayScoreEl.textContent = awayScore;
     }
