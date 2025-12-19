@@ -12,7 +12,7 @@ function increaseScore(team, points) {
         homeScore += points;
         homeScoreEl.textContent = homeScore;
     } else if (team === 'away') {
-        awayScoreScore += points;
+        awayScore += points;
         awayScoreEl.textContent = awayScore;
     }
     
@@ -27,7 +27,7 @@ function updateLeader() {
     awayScoreEl.classList.remove('leading');
     
     // Add 'leading' class to whoever has more points
-    if (homeScore > guestScore) {
+    if (homeScore > awayScore) {
         homeScoreEl.classList.add('leading');
     } else if (awayScore > homeScore) {
         awayScoreEl.classList.add('leading');
